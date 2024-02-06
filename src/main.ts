@@ -8,6 +8,7 @@ import { requestLog } from "@octokit/plugin-request-log";
 import { retry } from "@octokit/plugin-retry";
 import { RequestRequestOptions } from "@octokit/types";
 import { callAsyncFunction } from "./async-function";
+import { $ } from "bun";
 import {
   RetryOptions,
   getRetryOptions,
@@ -71,6 +72,7 @@ async function main(): Promise<void> {
       exec,
       glob,
       io,
+      $,
     },
     script
   );
