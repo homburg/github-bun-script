@@ -40,8 +40,10 @@ runs:
   steps:
     - uses: oven-sh/setup-bun@v1
     - run: |
+        echo "github.action_path: ${{ github.action_path }}"
+        env
         pwd
         ls -la
       shell: bash
-    - run: bun src/main.ts
+    - run: bun run "${{ github.action_path }}src/main.ts"
       shell: bash
