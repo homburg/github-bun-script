@@ -45,16 +45,16 @@ runs:
 
     - uses: oven-sh/setup-bun@v1
 
-    # - uses: actions/github-script@v7
-    #   id: input
-    #   with:
-    #     script: |
-    #       const inputs = ${{ toJSON(inputs) }};
+    - uses: actions/github-script@v7
+      id: input
+      with:
+        script: |
+          const inputs = ${{ toJSON(inputs) }};
 
-    #       for (const [key, val] of Object.entries(inputs)) {
-    #         core.exportVariable(`INPUT_${key.toUpperCase()}`, val);
-    #       }
+          for (const [key, val] of Object.entries(inputs)) {
+            core.setOutput(`INPUT_${key.toUpperCase()}`, val);
+          }
 
     - run: bun run "${{ github.action_path }}/src/main.ts"
       shell: bash
-      env: { "input_test": "hello" }
+      env: ${{ steps.input.outputs }}
