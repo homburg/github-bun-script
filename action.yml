@@ -41,6 +41,7 @@ runs:
     - uses: oven-sh/setup-bun@v1
 
     - uses: actions/github-script@v7
+      id: input
       with:
         script: |
           const inputs = ${{ toJSON(inputs) }};
@@ -51,3 +52,4 @@ runs:
 
     - run: bun run "${{ github.action_path }}/src/main.ts"
       shell: bash
+      env: ${{ toJSON(inputs) }}
