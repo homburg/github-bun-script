@@ -41,6 +41,7 @@ runs:
     - run: |
         env
       env: { "input_test": "input_test_value" }
+      shell: bash
 
     - uses: oven-sh/setup-bun@v1
 
