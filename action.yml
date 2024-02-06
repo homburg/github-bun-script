@@ -38,6 +38,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: |
+        env
+      env: { "input_test": "input_test_value" }
+
     - uses: oven-sh/setup-bun@v1
 
     # - uses: actions/github-script@v7
@@ -52,4 +56,4 @@ runs:
 
     - run: bun run "${{ github.action_path }}/src/main.ts"
       shell: bash
-      env: ${{ toJSON(inputs) }}
+      env: { "input_test": "hello" }
