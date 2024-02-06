@@ -49,12 +49,5 @@ runs:
             core.exportVariable(`INPUT_${key.toUpperCase()}`, val);
           }
 
-    - run: |
-        echo "github.action_path: ${{ github.action_path }}"
-        env
-        pwd
-        ls -la
-      shell: bash
-
     - run: bun run "${{ github.action_path }}/src/main.ts"
       shell: bash
