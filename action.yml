@@ -1,6 +1,6 @@
-name: GitHub Script
-author: GitHub
-description: Run simple scripts using the GitHub client
+name: GitHub bun Script
+author: GitHub and homburg
+description: Run simple bun scripts using the GitHub client
 branding:
   color: blue
   icon: code
@@ -32,9 +32,16 @@ inputs:
   base-url:
     description: An optional GitHub REST API URL to connect to a different GitHub instance. For example, https://my.github-enterprise-server.com/api/v3
     required: false
-outputs:
-  result:
-    description: The return value of the script, stringified with `JSON.stringify`
+# outputs:
+#   result:
+#     description: The return value of the script, stringified with `JSON.stringify`
 runs:
-  using: node20
-  main: dist/index.js
+  using: "composite"
+  steps:
+    - uses: oven-sh/setup-bun@v1
+    - run: |
+        pwd
+        ls -la
+      shell: bash
+    - run: bun src/main.ts
+      shell: bash
